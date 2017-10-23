@@ -1,12 +1,23 @@
 {
-    "name": "openshift-cartridge-nodejs-template",
-    "version": "1.0.1",
-    "description": "Custom Node.js cartridge for OpenShift - sample application",
-    "private": true,
-    "main": "start.js",
+    "name": "test-ng2-currency-mask",
+    "version": "1.0.0-SNAPSHOT",
+    "license": "ISC",
+    "main": "server.js",
     "scripts": {
-        "start": "node --use_strict start.js"
+        "start": "node server.js"
     },
-    "author": "Ionut-Cristian Florescu <ionut.florescu@gmail.com>",
-    "license": "ISC"
+    "engine": {
+        "node": "*",
+        "npm": "*"
+    },
+    "dependencies": {
+        "chai": "^3.5.0",
+        "chai-http": "^2.0.1",
+        "ejs": "^2.4.1",
+        "express": "^4.13.4",
+        "mocha": "^2.4.5",
+        "mongodb": "^2.1.16",
+        "morgan": "^1.7.0",
+        "object-assign": "4.1.0"
+    }
 }

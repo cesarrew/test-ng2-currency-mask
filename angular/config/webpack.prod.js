@@ -14,7 +14,7 @@ module.exports = {
     },
 
     output: {
-        path: path.resolve("../static"),
+        path: path.resolve("../views"),
         filename: "[name].[hash].js",
         chunkFilename: "[id].[hash].chunk.js"
     },
