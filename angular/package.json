@@ -1,41 +1,36 @@
 {
     "name": "test-ng2-currency-mask",
-    "version": "1.0.0-SNAPSHOT",
-    "license": "ISC",
+    "version": "1.0.0",
+    "license": "MIT",
     "scripts": {
-        "start": "webpack-dev-server --config config/webpack.dev.js --progress --port 3000",
-        "build": "del -f '../static' && webpack --config config/webpack.prod.js --progress --profile --bail"
+        "ng": "ng",
+        "start": "ng serve",
+        "build": "del -f '../views' && ng build --prod",
+        "test": "ng test",
+        "lint": "ng lint",
+        "e2e": "ng e2e"
     },
+    "private": true,
     "dependencies": {
-        "@angular/common": "4.4.4",
-        "@angular/compiler": "4.4.4",
-        "@angular/core": "4.4.4",
-        "@angular/forms": "4.4.4",
-        "@angular/platform-browser": "4.4.4",
-        "@angular/platform-browser-dynamic": "4.4.4",
-        "core-js": "2.4.1",
-        "ng2-currency-mask": "4.4.0",
-        "rxjs": "5.0.1",
-        "zone.js": "0.8.5"
+        "@angular/animations": "^5.2.0",
+        "@angular/common": "^5.2.0",
+        "@angular/compiler": "^5.2.0",
+        "@angular/core": "^5.2.0",
+        "@angular/forms": "^5.2.0",
+        "@angular/http": "^5.2.0",
+        "@angular/platform-browser": "^5.2.0",
+        "@angular/platform-browser-dynamic": "^5.2.0",
+        "@angular/router": "^5.2.0",
+        "core-js": "^2.4.1",
+        "ng2-currency-mask": "5.0.0",
+        "rxjs": "^5.5.6",
+        "zone.js": "^0.8.19"
     },
     "devDependencies": {
-        "@angular/compiler-cli": "4.4.4",
-        "@ngtools/webpack": "1.5.5",
-        "@types/core-js": "0.9.35",
-        "@types/node": "7.0.5",
-        "angular2-template-loader": "0.6.2",
-        "awesome-typescript-loader": "3.2.2",
-        "css-loader": "0.28.4",
+        "@angular/cli": "~1.7.2",
+        "@angular/compiler-cli": "^5.2.0",
+        "@angular/language-service": "^5.2.0",
         "del-cli": "1.1.0",
-        "extract-text-webpack-plugin": "3.0.0",
-        "file-loader": "0.11.2",
-        "html-loader": "0.5.0",
-        "html-webpack-plugin": "2.30.0",
-        "raw-loader": "0.5.1",
-        "script-loader": "0.7.0",
-        "style-loader": "0.18.2",
-        "typescript": "2.3.4",
-        "webpack": "3.4.1",
-        "webpack-dev-server": "2.6.1"
+        "typescript": "~2.5.3"
     }
 }
