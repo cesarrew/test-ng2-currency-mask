@@ -1,20 +1,20 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { CurrencyMaskModule } from "ng2-currency-mask";
+//import { CurrencyMaskModule } from "ng2-currency-mask";
 import { FormsModule } from "@angular/forms";
 import { NgModule } from "@angular/core";
 
 import { AppComponent } from "./component/app.component";
-//import { CurrencyMaskDirective } from "./directive/currency-mask.directive";
+import { CurrencyMaskDirective } from "./directive/currency-mask.directive";
 
 @NgModule({
     imports: [
         BrowserModule,
-        CurrencyMaskModule,
+        //CurrencyMaskModule,
         FormsModule
     ],
     declarations: [
-        AppComponent
-        //CurrencyMaskDirective
+        AppComponent,
+        CurrencyMaskDirective
     ],
     providers: [
     ],
