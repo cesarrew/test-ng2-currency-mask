@@ -12,6 +12,14 @@ export class InputHandler {
         this.htmlInputElement = htmlInputElement;
     }
 
+    handleClick(event: any): void {
+        let selectionRangeLength = Math.abs(this.inputService.inputSelection.selectionEnd - this.inputService.inputSelection.selectionStart);
+
+        if (selectionRangeLength == 0 && !isNaN(this.inputService.value)) {
+            this.inputService.fixCursorPosition();
+        }
+    }
+
     handleCut(event: any): void {
         if (this.isReadOnly()) {
             return;
@@ -123,6 +131,15 @@ export class InputHandler {
 
         event.preventDefault();
         this.onModelChange(this.inputService.value);
+    }
+
+    handleKeyup(event: any): void {
+        let keyCode = event.which || event.charCode || event.keyCode;
+
+        //move the cursor to start position only if the key is home or left arrow
+        let fixToStartPosition = keyCode == 36 || keyCode == 37 ? true : false;
+
+        this.inputService.fixCursorPosition(fixToStartPosition);
     }
 
     handlePaste(event: any): void {

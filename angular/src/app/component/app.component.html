@@ -1,4 +1,4 @@
-<input #teste currencyMask [(ngModel)]="value" required />
+<input #teste currencyMask [(ngModel)]="value" required [options]="{ suffix: ' DOLLAR'}" />
 
 <br />
 <br />{{value}}
