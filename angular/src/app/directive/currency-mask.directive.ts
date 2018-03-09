@@ -60,9 +60,12 @@ export class CurrencyMaskDirective implements AfterViewInit, ControlValueAccesso
         this.inputHandler.getOnModelTouched().apply(event);
     }
 
+    //TODO: Add the click behavior to mobile as well.
     @HostListener("click", ["$event"])
     handleClick(event: any) {
-        this.inputHandler.handleClick(event);
+        if (!this.isChromeAndroid()) {
+            this.inputHandler.handleClick(event);
+        }
     }
 
     @HostListener("cut", ["$event"])

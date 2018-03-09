@@ -32,6 +32,7 @@ export class InputHandler {
         }, 0);
     }
 
+    //TODO: Fix to work with fixCursorPosition() method.
     handleInput(event: any): void {
         if (this.isReadOnly()) {
             return;
@@ -44,7 +45,7 @@ export class InputHandler {
         this.inputService.rawValue = this.inputService.storedRawValue;
 
         if (rawValueLength != rawValueSelectionEnd || Math.abs(rawValueLength - storedRawValueLength) != 1) {
-            this.inputService.fixCursorPosition();
+            this.setCursorPosition(event);
             return;
         }
 
@@ -73,7 +74,7 @@ export class InputHandler {
             }
         }
 
-        this.inputService.fixCursorPosition();
+        this.setCursorPosition(event);
         this.onModelChange(this.inputService.value);
     }
 
@@ -137,9 +138,14 @@ export class InputHandler {
         let keyCode = event.which || event.charCode || event.keyCode;
 
         //move the cursor to start position only if the key is home or left arrow
-        let fixToStartPosition = keyCode == 36 || keyCode == 37 ? true : false;
+        if (keyCode == 36 || keyCode == 37) {
+            this.inputService.fixCursorPosition(true);
+        }
 
-        this.inputService.fixCursorPosition(fixToStartPosition);
+        //move the cursor to end position only if the key is end or right arrow
+        if (keyCode == 35 || keyCode == 39) {
+            this.inputService.fixCursorPosition(false);
+        }
     }
 
     handlePaste(event: any): void {
@@ -188,5 +194,11 @@ export class InputHandler {
 
     private isReadOnly() {
         return this.htmlInputElement && this.htmlInputElement.readOnly;
+    }
+
+    private setCursorPosition(event: any): void {
+        setTimeout(function () {
+            event.target.setSelectionRange(event.target.value.length, event.target.value.length);
+        }, 0);
     }
 }
