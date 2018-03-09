@@ -135,17 +135,7 @@ export class InputHandler {
     }
 
     handleKeyup(event: any): void {
-        let keyCode = event.which || event.charCode || event.keyCode;
-
-        //move the cursor to start position only if the key is home or left arrow
-        if (keyCode == 36 || keyCode == 37) {
-            this.inputService.fixCursorPosition(true);
-        }
-
-        //move the cursor to end position only if the key is end or right arrow
-        if (keyCode == 35 || keyCode == 39) {
-            this.inputService.fixCursorPosition(false);
-        }
+        this.inputService.fixCursorPosition();
     }
 
     handlePaste(event: any): void {

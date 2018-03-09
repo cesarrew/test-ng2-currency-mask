@@ -76,23 +76,20 @@ export class InputService {
         this.rawValue = this.rawValue.replace("-", "");
     }
 
-    fixCursorPosition(fixToStartPosition?: boolean): void {
+    fixCursorPosition(): void {
         let { prefix, suffix } = this.options;
         let currentCursorPosition = this.inputSelection.selectionStart;
         let rawValueWithoutPrefixSuffixEndPosition = this.rawValue.length - suffix.length;
-        let rawValueWithoutPrefixSuffixStartPosition = prefix.length;
+        let rawValueWithoutPrefixSuffixStartPosition = this.value != null && this.value < 0 ? prefix.length + 1 : prefix.length;
 
-        //if the current cursor position is not in the number limits, it is moved to the end or to the start of the number, ignoring the prefix or suffix
-        if (currentCursorPosition < rawValueWithoutPrefixSuffixStartPosition || currentCursorPosition > rawValueWithoutPrefixSuffixEndPosition) {
-            //move the cursor to the number start position
-            if (fixToStartPosition != null && fixToStartPosition) {
-                this.inputManager.setCursorAt(rawValueWithoutPrefixSuffixStartPosition);
-            }
+        //if the current cursor position is before the number start position, it is moved to the start of the number, ignoring the prefix or suffix
+        if (currentCursorPosition < rawValueWithoutPrefixSuffixStartPosition) {
+            this.inputManager.setCursorAt(rawValueWithoutPrefixSuffixStartPosition);
+        }
 
-            //move the cursor to the number end position
-            if (fixToStartPosition == null || (fixToStartPosition != null && !fixToStartPosition)) {
-                this.inputManager.setCursorAt(rawValueWithoutPrefixSuffixEndPosition);
-            }
+        //if the current cursor position is after the number end position, it is moved to the end of the number, ignoring the prefix or suffix
+        if (currentCursorPosition > rawValueWithoutPrefixSuffixEndPosition) {
+            this.inputManager.setCursorAt(rawValueWithoutPrefixSuffixEndPosition);
         }
     }
 
