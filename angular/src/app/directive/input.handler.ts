@@ -44,7 +44,7 @@ export class InputHandler {
         this.inputService.rawValue = this.inputService.storedRawValue;
 
         if (rawValueLength != rawValueSelectionEnd || Math.abs(rawValueLength - storedRawValueLength) != 1) {
-            this.setCursorPosition(event);
+            this.inputService.fixCursorPosition();
             return;
         }
 
@@ -73,7 +73,7 @@ export class InputHandler {
             }
         }
 
-        this.setCursorPosition(event);
+        this.inputService.fixCursorPosition();
         this.onModelChange(this.inputService.value);
     }
 
@@ -188,11 +188,5 @@ export class InputHandler {
 
     private isReadOnly() {
         return this.htmlInputElement && this.htmlInputElement.readOnly;
-    }
-
-    private setCursorPosition(event: any): void {
-        setTimeout(function () {
-            event.target.setSelectionRange(event.target.value.length, event.target.value.length);
-        }, 0);
     }
 }
