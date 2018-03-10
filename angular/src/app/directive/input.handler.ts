@@ -46,10 +46,7 @@ export class InputHandler {
         this.inputService.rawValue = this.inputService.storedRawValue;
 
         if ((rawValueSelectionEnd != rawValueWithoutSuffixEndPosition || Math.abs(rawValueLength - storedRawValueLength) != 1) && storedRawValueLength != 0) {
-            setTimeout(function () {
-                this.inputService.fixCursorPosition(true);
-            }, 0);
-
+            this.setCursorPosition(event);
             return;
         }
 
@@ -78,10 +75,7 @@ export class InputHandler {
             }
         }
 
-        setTimeout(function () {
-            this.inputService.fixCursorPosition(true);
-        }, 0);
-
+        this.setCursorPosition(event);
         this.onModelChange(this.inputService.value);
     }
 
@@ -203,5 +197,13 @@ export class InputHandler {
 
     private isReadOnly() {
         return this.htmlInputElement && this.htmlInputElement.readOnly;
+    }
+
+    private setCursorPosition(event: any): void {
+        let rawValueWithoutSuffixEndPosition = this.inputService.getRawValueWithoutSuffixEndPosition();
+
+        setTimeout(function () {
+            event.target.setSelectionRange(rawValueWithoutSuffixEndPosition, rawValueWithoutSuffixEndPosition);
+        }, 0);
     }
 }
