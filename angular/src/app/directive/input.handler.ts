@@ -46,7 +46,10 @@ export class InputHandler {
         this.inputService.rawValue = this.inputService.storedRawValue;
 
         if ((rawValueSelectionEnd != rawValueWithoutSuffixEndPosition || Math.abs(rawValueLength - storedRawValueLength) != 1) && storedRawValueLength != 0) {
-            this.inputService.fixCursorPosition(true);
+            setTimeout(function () {
+                this.inputService.fixCursorPosition(true);
+            }, 0);
+
             return;
         }
 
@@ -75,7 +78,10 @@ export class InputHandler {
             }
         }
 
-        this.inputService.fixCursorPosition(true);
+        setTimeout(function () {
+            this.inputService.fixCursorPosition(true);
+        }, 0);
+
         this.onModelChange(this.inputService.value);
     }
 
