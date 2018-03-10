@@ -6,5 +6,5 @@ import { Component } from "@angular/core";
 })
 export class AppComponent {
 
-    value: number = 300.10
+    value: number = 12.34
 }
