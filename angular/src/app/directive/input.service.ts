@@ -68,12 +68,16 @@ export class InputService {
 
     changeToNegative(): void {
         if (this.options.allowNegative && this.rawValue != "" && this.rawValue.charAt(0) != "-" && this.value != 0) {
+            let selectionStart = this.inputSelection.selectionStart;
             this.rawValue = "-" + this.rawValue;
+            this.updateFieldValue(selectionStart + 1);
         }
     }
 
     changeToPositive(): void {
+        let selectionStart = this.inputSelection.selectionStart;
         this.rawValue = this.rawValue.replace("-", "");
+        this.updateFieldValue(selectionStart - 1);
     }
 
     fixCursorPosition(): void {
